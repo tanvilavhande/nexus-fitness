@@ -1,0 +1,630 @@
+---
+import '../styles/global.css';
+import WhatsAppWidget from '../components/WhatsAppWidget.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = "Nexus Fitness Court | Best Gym in Besa, Nagpur | Unisex Fitness Center",
+  description = "Join Nexus Fitness Court on Besa Road, Nagpur (Near Besa Masjid). Commercial Gymquip strength machinery, cardio zone, certified personal training, and body transformation. Claim your free 1-day pass!",
+  image = "/images/nexus-gym-floor.jpg",
+  canonicalUrl = Astro.url.href,
+} = Astro.props;
+
+const siteUrl = "https://nexusfitnesscourt.com";
+const absoluteImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HealthClub",
+      "@id": `${siteUrl}/#healthclub`,
+      "name": "Nexus Fitness Court",
+      "alternateName": "Nexus Fitness Court Besa",
+      "url": siteUrl,
+      "logo": `${siteUrl}/images/nexus-logo.svg`,
+      "image": `${siteUrl}/images/nexus-gym-floor.jpg`,
+      "description": description,
+      "telephone": "+91 81493 93881",
+      "priceRange": "₹₹",
+      "currenciesAccepted": "INR",
+      "paymentAccepted": "Cash, UPI, Credit Card, Debit Card",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1st Floor, Om Enclave, 2, Besa Road, Near Besa Masjid, Besa, Besa Pipla",
+        "addressLocality": "Nagpur",
+        "addressRegion": "Maharashtra",
+        "postalCode": "440037",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 21.0858,
+        "longitude": 79.0886
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "06:00",
+          "closes": "22:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday"],
+          "opens": "07:00",
+          "closes": "12:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "120",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Commercial Gymquip Strength Stations", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Dedicated Cardio & Treadmill Zone", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Free Weights & Dumbbells Arena", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Certified Personal Training", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Fully Air Conditioned", "value": true }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Nexus Fitness Court",
+      "description": description,
+      "publisher": {
+        "@id": `${siteUrl}/#healthclub`
+      }
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#07080b" />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="Nexus Fitness Court - Besa Nagpur" />
+    <meta name="keywords" content="Nexus Fitness Court, Nexus Fitness Court Nagpur, gym Besa Nagpur, best gym Besa, gym near Besa Masjid, unisex gym Besa Nagpur, personal trainer Nagpur, fitness center Besa Pipla, body transformation Besa" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={absoluteImageUrl} />
+    <meta property="og:site_name" content="Nexus Fitness Court" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteImageUrl} />
+
+    <!-- JSON-LD Structured Data for Google Local Gym Ranking -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  </head>
+  <body class="bg-grid-ambient">
+    <!-- Top Announcement Bar -->
+    <aside class="announcement-bar" aria-label="Announcement">
+      <div class="container announcement-inner">
+        <span class="pulse-indicator"></span>
+        <span class="announcement-text">
+          <strong>BESA ROAD, NAGPUR:</strong> Welcome to Nexus Fitness Court (Near Besa Masjid) — Claim your free 1-day pass & fitness assessment!
+        </span>
+        <a href="#book-call" class="announcement-link">Claim Free Trial &rarr;</a>
+      </div>
+    </aside>
+
+    <!-- Global Navigation -->
+    <header class="frosted-nav" role="banner">
+      <div class="container nav-wrapper">
+        <a href="/" class="brand-logo" aria-label="Nexus Fitness Court Home">
+          <img 
+            src="/images/nexus-logo.svg" 
+            alt="Nexus Fitness Court Logo" 
+            width="180" 
+            height="46" 
+            class="brand-logo-svg"
+          />
+        </a>
+
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <a href="/#facility" class="nav-item">Gym Floor & Machines</a>
+          <a href="/#programs" class="nav-item">Programs & PT</a>
+          <a href="/#approach" class="nav-item">The Nexus Method</a>
+          <a href="/#transformations" class="nav-item">Transformations</a>
+          <a href="/#coach" class="nav-item">Trainers & Coaching</a>
+          <a href="/#calculator" class="nav-item">Macro Tool</a>
+          <a href="/#faq" class="nav-item">FAQ</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="tel:+918149393881" class="btn-ghost nav-phone" aria-label="Call Nexus Fitness Court">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+91 81493 93881</span>
+          </a>
+          <a href="#book-call" class="btn-primary nav-cta">
+            <span>Free Trial Pass</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+          <button class="mobile-menu-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div class="mobile-drawer" id="mobileDrawer">
+        <nav class="mobile-nav-links">
+          <a href="/#facility" class="mobile-link">Gym Floor & Machines</a>
+          <a href="/#programs" class="mobile-link">Programs & PT</a>
+          <a href="/#approach" class="mobile-link">The Nexus Method</a>
+          <a href="/#transformations" class="mobile-link">Transformations</a>
+          <a href="/#coach" class="mobile-link">Trainers & Coaching</a>
+          <a href="/#calculator" class="mobile-link">Macro Diagnostic Tool</a>
+          <a href="/#faq" class="mobile-link">FAQ</a>
+          <a href="tel:+918149393881" class="btn-ghost mobile-cta">Call +91 81493 93881</a>
+          <a href="#book-call" class="btn-primary mobile-cta">Claim Free Trial Pass &rarr;</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Page Content -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container footer-grid">
+        <div class="footer-brand-col">
+          <a href="/" class="brand-logo footer-logo">
+            <img 
+              src="/images/nexus-logo.svg" 
+              alt="Nexus Fitness Court Logo" 
+              width="210" 
+              height="52" 
+              class="brand-logo-svg"
+            />
+          </a>
+          <p class="footer-tagline">
+            <em>"Elevate Your Strength, Redefine Your Limits"</em> — Besa's premier unisex gym and physical transformation center. Fully equipped with commercial Gymquip machinery, certified coaches, and an energetic workout environment.
+          </p>
+          <div class="footer-location-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>1st Floor, Om Enclave, 2, Besa Road, Near Besa Masjid, Besa, Nagpur 440037</span>
+          </div>
+          <div class="footer-phone-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+918149393881" class="phone-link">+91 81493 93881</a>
+          </div>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/nexusfitnesscourt" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Nexus Fitness Court Instagram">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://wa.me/918149393881" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Nexus Fitness Court WhatsApp">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.115.553 4.178 1.603 5.996L.062 24l6.155-1.614a11.96 11.96 0 0 0 5.814 1.493h.005c6.645 0 12.03-5.385 12.03-12.03A12.016 12.016 0 0 0 12.031 0zm0 22.016h-.004a9.98 9.98 0 0 1-5.093-1.396l-.365-.217-3.785.993 1.01-3.69-.238-.379a9.986 9.986 0 0 1-1.536-5.296c0-5.526 4.495-10.021 10.025-10.021a9.96 9.96 0 0 1 7.085 2.936 9.96 9.96 0 0 1 2.935 7.085c0 5.526-4.495 10.021-10.025 10.021z"/></svg>
+            </a>
+            <a href="https://maps.google.com/?q=Nexus+Fitness+Court+Besa+Nagpur" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Google Maps">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Training & Facility</h4>
+          <ul class="footer-list">
+            <li><a href="/#facility">Gymquip Strength Machinery</a></li>
+            <li><a href="/#facility">Free Weights & Custom Dumbbells</a></li>
+            <li><a href="/#facility">Cardio, Treadmills & Ellipticals</a></li>
+            <li><a href="/#programs">1-on-1 Personal Training</a></li>
+            <li><a href="/#programs">Weight Loss & Fat Reduction</a></li>
+            <li><a href="/#programs">Body Recomposition & Lean Hypertrophy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h4 class="footer-heading">Gym Hours & Timings</h4>
+          <ul class="footer-list">
+            <li><strong style="color: #fff;">Mon – Sat:</strong> 6:00 AM – 10:00 PM</li>
+            <li><strong style="color: #fff;">Sunday:</strong> 7:00 AM – 12:00 PM</li>
+            <li><a href="/#calculator">Daily Macro Calculator</a></li>
+            <li><a href="/#faq">Membership FAQs</a></li>
+            <li><a href="#book-call">Book 1-Day Free Trial</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-newsletter-col">
+          <h4 class="footer-heading">Join Nexus Fitness Court</h4>
+          <p class="newsletter-sub">
+            Get personalized workout tips from our certified trainers and exclusive membership updates.
+          </p>
+          <form class="newsletter-form" id="newsletterForm" onsubmit="event.preventDefault(); alert('Welcome to Nexus Fitness Court! We will contact you on WhatsApp.');">
+            <div class="newsletter-input-group">
+              <input type="text" placeholder="Your WhatsApp number..." required class="newsletter-input" />
+              <button type="submit" class="newsletter-btn" aria-label="Subscribe">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+            <span class="newsletter-privacy">Direct gym updates & membership offers via WhatsApp.</span>
+          </form>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <div class="footer-bottom-copy">
+          &copy; {new Date().getFullYear()} Nexus Fitness Court. All rights reserved. Besa Road, Near Besa Masjid, Nagpur.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Membership</a>
+          <a href="/sitemap.xml">XML Sitemap</a>
+          <a href="https://maps.google.com/?q=Nexus+Fitness+Court+Besa+Nagpur" target="_blank" rel="noopener noreferrer">Google Maps Directions</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const mobileBtn = document.getElementById('mobileMenuBtn');
+      const mobileDrawer = document.getElementById('mobileDrawer');
+      if (mobileBtn && mobileDrawer) {
+        mobileBtn.addEventListener('click', () => {
+          const isOpen = mobileDrawer.classList.toggle('is-open');
+          mobileBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        mobileDrawer.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileDrawer.classList.remove('is-open');
+            mobileBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    </script>
+
+    <style>
+      .announcement-bar {
+        background: #0d0e14;
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 0.5rem 0;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+      .announcement-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        text-align: center;
+      }
+      .pulse-indicator {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: var(--primary);
+        box-shadow: 0 0 10px var(--primary);
+        animation: pulse-dot 1.8s infinite;
+      }
+      .announcement-text strong {
+        color: #ffffff;
+      }
+      .announcement-link {
+        color: var(--primary);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+      }
+      .announcement-link:hover {
+        text-decoration: underline;
+      }
+
+      /* Navigation */
+      .nav-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 76px;
+      }
+      .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .brand-logo-svg {
+        height: 44px;
+        width: auto;
+        display: block;
+      }
+
+      .desktop-nav {
+        display: none;
+        align-items: center;
+        gap: 1.8rem;
+      }
+      @media (min-width: 960px) {
+        .desktop-nav {
+          display: flex;
+        }
+      }
+      .nav-item {
+        font-family: var(--font-heading);
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        transition: color var(--transition-fast);
+      }
+      .nav-item:hover {
+        color: var(--primary);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .nav-phone {
+        display: none;
+        padding: 0.55rem 1rem;
+        font-size: 0.82rem;
+      }
+      @media (min-width: 1100px) {
+        .nav-phone {
+          display: inline-flex;
+        }
+      }
+      .nav-cta {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.82rem;
+      }
+      @media (max-width: 480px) {
+        .nav-cta {
+          display: none;
+        }
+      }
+
+      .mobile-menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        padding: 8px;
+      }
+      @media (min-width: 960px) {
+        .mobile-menu-toggle {
+          display: none;
+        }
+      }
+      .mobile-menu-toggle .bar {
+        width: 100%;
+        height: 2px;
+        background-color: #ffffff;
+        transition: all 0.2s;
+      }
+
+      .mobile-drawer {
+        display: none;
+        background: rgba(14, 16, 23, 0.98);
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 1.5rem 0;
+      }
+      .mobile-drawer.is-open {
+        display: block;
+      }
+      .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        padding: 0 1.5rem;
+      }
+      .mobile-link {
+        font-family: var(--font-heading);
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #ffffff;
+      }
+      .mobile-cta {
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      /* Footer */
+      .site-footer {
+        background: #050608;
+        border-top: 1px solid var(--border-subtle);
+        padding-top: 5rem;
+        padding-bottom: 2.5rem;
+        margin-top: 6rem;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      @media (min-width: 640px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (min-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: 2fr 1fr 1fr 1.8fr;
+        }
+      }
+      .footer-tagline {
+        margin-top: 1.25rem;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        max-width: 360px;
+        color: var(--text-secondary);
+      }
+      .footer-location-badge,
+      .footer-phone-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-top: 0.9rem;
+        font-size: 0.85rem;
+        color: #ffffff;
+      }
+      .phone-link {
+        color: var(--primary);
+        font-weight: 700;
+      }
+      .phone-link:hover {
+        text-decoration: underline;
+      }
+      .footer-socials {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+      .social-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: var(--radius-sm);
+        background: var(--bg-surface);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-secondary);
+        transition: all var(--transition-fast);
+      }
+      .social-icon:hover {
+        color: var(--primary);
+        border-color: var(--border-nexus);
+        transform: translateY(-2px);
+      }
+      .footer-heading {
+        font-size: 1rem;
+        color: #ffffff;
+        margin-bottom: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .footer-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .footer-list a {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+      }
+      .footer-list a:hover {
+        color: var(--primary);
+      }
+      .newsletter-sub {
+        font-size: 0.88rem;
+        margin-bottom: 1rem;
+      }
+      .newsletter-input-group {
+        display: flex;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-medium);
+        border-radius: var(--radius-pill);
+        padding: 0.25rem 0.35rem 0.25rem 1rem;
+        transition: border-color var(--transition-fast);
+      }
+      .newsletter-input-group:focus-within {
+        border-color: var(--primary);
+        box-shadow: 0 0 15px rgba(234, 179, 8, 0.25);
+      }
+      .newsletter-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #ffffff;
+        font-family: var(--font-body);
+        font-size: 0.88rem;
+      }
+      .newsletter-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: none;
+        color: #0b0c10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform var(--transition-fast);
+      }
+      .newsletter-btn:hover {
+        transform: scale(1.08);
+      }
+      .newsletter-privacy {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--text-dim);
+        margin-top: 0.5rem;
+      }
+      .footer-bottom {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-subtle);
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.82rem;
+        color: var(--text-dim);
+      }
+      @media (min-width: 768px) {
+        .footer-bottom {
+          flex-direction: row;
+        }
+      }
+      .footer-bottom-links {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .footer-bottom-links a:hover {
+        color: var(--primary);
+      }
+    </style>
+
+    <!-- Floating WhatsApp Widget -->
+    <WhatsAppWidget />
+  </body>
+</html>

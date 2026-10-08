@@ -1,0 +1,165 @@
+---
+// FAQ Accordion Component with Local SEO Schema - Nexus Fitness Court
+const faqs = [
+  {
+    q: "Where is Nexus Fitness Court located in Nagpur?",
+    a: "We are centrally located at 1st Floor, Om Enclave, 2, Besa Road, Near Besa Masjid, Besa, Besa Pipla, Nagpur, Maharashtra (440037). Our facility is easily accessible for residents across Besa, Manish Nagar, Beltarodi, Pipla Road, and South Nagpur with convenient parking."
+  },
+  {
+    q: "What are the gym operating hours and workout batches?",
+    a: "Nexus Fitness Court is open Monday to Saturday from 6:00 AM to 10:00 PM with flexible morning, afternoon, and evening batches. We also open Sunday mornings from 7:00 AM to 12:00 PM for flexibility around college, work, and family schedules."
+  },
+  {
+    q: "What makes Nexus Fitness Court different from other gyms in Besa?",
+    a: "Nexus Fitness Court features commercial Gymquip plate-loaded and selectorized machinery (including 45° leg press, cable cross towers, and chest press), custom Captain America shield dumbbells, high-endurance motorized treadmills, high-velocity air-conditioning, and hands-on floor coaching on every set."
+  },
+  {
+    q: "Is Nexus Fitness Court a unisex gym? Is it welcoming for beginners and women?",
+    a: "Yes, 100%! We are a premier unisex fitness center where women, beginners, corporate workers, and seasoned athletes train comfortably. Our certified trainers guide beginners through machine setup, correct posture, and weight selection from day one."
+  },
+  {
+    q: "What is included in the 1-Day Free Trial Pass?",
+    a: "Your free trial includes full gym floor access, an equipment tour across our Gymquip stations, a biophysical fitness consultation, and customized lifting form pointers. You can claim it online or by calling +91 81493 93881."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
+---
+
+<section id="faq" class="faq-section" aria-labelledby="faq-heading">
+  <!-- FAQ JSON-LD Schema for Local Google Search Snippets -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <div class="container faq-container">
+    <div class="faq-header text-center">
+      <div class="badge-nexus">
+        COMMON INQUIRIES & MEMBERSHIP
+      </div>
+      <h2 id="faq-heading" class="faq-title">
+        FREQUENTLY ASKED <span class="text-nexus">QUESTIONS.</span>
+      </h2>
+      <p class="faq-sub">
+        Everything you need to know about memberships, Gymquip equipment, timings, and personal coaching at Nexus Fitness Court.
+      </p>
+    </div>
+
+    <div class="faq-accordion">
+      {faqs.map((faq, index) => (
+        <details class="faq-item glass-card" open={index === 0}>
+          <summary class="faq-question">
+            <span>{faq.q}</span>
+            <div class="faq-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </div>
+          </summary>
+          <div class="faq-answer">
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    padding: 6.5rem 0;
+    position: relative;
+    background: #08090e;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .faq-container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .faq-header {
+    margin-bottom: 3.5rem;
+  }
+  .faq-title {
+    font-size: 2.5rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 768px) {
+    .faq-title {
+      font-size: 3.25rem;
+    }
+  }
+  .faq-sub {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .faq-item {
+    background: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    padding: 0;
+    transition: all var(--transition-fast);
+  }
+  .faq-item[open] {
+    border-color: var(--border-nexus);
+    background: #13151f;
+  }
+
+  .faq-question {
+    list-style: none;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    user-select: none;
+  }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--primary);
+    transition: transform var(--transition-fast);
+  }
+  .faq-item[open] .faq-icon {
+    transform: rotate(180deg);
+    background: rgba(234, 179, 8, 0.18);
+  }
+
+  .faq-answer {
+    padding: 0 2rem 1.75rem 2rem;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+</style>

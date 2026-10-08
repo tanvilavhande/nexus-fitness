@@ -1,0 +1,256 @@
+---
+// Real Gym Facility & Equipment Gallery Component - Nexus Fitness Court
+const facilityPhotos = [
+  {
+    image: "/images/unnamed (1).jpg",
+    alt: "Nexus Fitness Court main training floor with cable stations and Gymquip machines",
+    title: "Main Strength & Cable Station Arena",
+    category: "Strength & Functional Wing",
+    desc: "Equipped with Gymquip dual cable crossovers, leg extension/curl stations, and expansive training floor with full-length mirrors and dual ACs."
+  },
+  {
+    image: "/images/unnamed.jpg",
+    alt: "Nexus Fitness Court heavy leg press and plate-loaded chest machines",
+    title: "Heavy Plate-Loaded Leg & Chest Stations",
+    category: "Compound Strength Arena",
+    desc: "Commercial 45-degree linear leg press, hack squat, and biomechanical chest press machinery engineered for maximum muscle recruitment and safety."
+  },
+  {
+    image: "/images/unnamed (2).jpg",
+    alt: "Nexus Fitness Court free weights zone with custom Captain America shield dumbbells",
+    title: "Custom Shield Dumbbells & Benches Floor",
+    category: "Free Weights Zone",
+    desc: "Complete tier of precision dumbbells featuring custom star endplates, multi-angle incline benches, preacher bench, and heavy rubberized flooring."
+  },
+  {
+    image: "/images/unnamed (3).jpg",
+    alt: "Nexus Fitness Court cardio zone with motorized treadmills and ellipticals",
+    title: "High-Endurance Cardio & Fat-Burn Suite",
+    category: "Cardio & Stamina Studio",
+    desc: "High-traction commercial motorized treadmills with digital metric readouts, elliptical trainers, and modern architectural lighting."
+  }
+];
+---
+
+<section id="facility" class="facility-section" aria-labelledby="facility-heading">
+  <div class="container">
+    <div class="section-header text-center">
+      <div class="badge-nexus">
+        FACILITY TOUR & REAL EQUIPMENT
+      </div>
+      <h2 id="facility-heading" class="section-title">
+        TAKE A LOOK INSIDE <span class="text-nexus">NEXUS FITNESS COURT.</span>
+      </h2>
+      <p class="section-sub">
+        Explore our fully equipped unisex training floor on Besa Road (Near Besa Masjid), Nagpur. Built with commercial Gymquip machinery and an energizing modern iron atmosphere.
+      </p>
+    </div>
+
+    <div class="facility-grid">
+      {facilityPhotos.map((item, idx) => (
+        <article class={`facility-card glass-card ${idx === 0 ? 'facility-card-featured' : ''}`}>
+          <div class="facility-media">
+            <img 
+              src={item.image} 
+              alt={item.alt}
+              width="600" 
+              height="400" 
+              loading="lazy"
+              class="facility-img"
+            />
+            <div class="facility-overlay"></div>
+            <span class="facility-badge">{item.category}</span>
+          </div>
+          <div class="facility-body">
+            <h3 class="facility-title">{item.title}</h3>
+            <p class="facility-desc">{item.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Gym Amenities Highlight Banner -->
+    <div class="amenities-strip glass-card glass-card-glow">
+      <div class="amenity-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.2"><path d="M6 2v20M18 2v20M6 12h12M2 7h4M2 17h4M18 7h4M18 17h4"/></svg>
+        <div>
+          <h4>Gymquip Commercial Gear</h4>
+          <span>Engineered biomechanical stations</span>
+        </div>
+      </div>
+
+      <div class="amenity-divider"></div>
+
+      <div class="amenity-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div>
+          <h4>Mon – Sat: 6 AM to 10 PM</h4>
+          <span>Flexible batches for students & professionals</span>
+        </div>
+      </div>
+
+      <div class="amenity-divider"></div>
+
+      <div class="amenity-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div>
+          <h4>Certified On-Floor Coaches</h4>
+          <span>Form correction, posture & safe lifting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .facility-section {
+    padding: 6.5rem 0;
+    position: relative;
+    background: #090a0e;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .section-header {
+    max-width: 780px;
+    margin: 0 auto 3.5rem auto;
+  }
+  .section-title {
+    font-size: 2.5rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  @media (min-width: 768px) {
+    .section-title {
+      font-size: 3.5rem;
+    }
+  }
+  .section-sub {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .facility-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+  }
+  @media (min-width: 768px) {
+    .facility-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .facility-card {
+    background: var(--bg-surface);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-subtle);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all var(--transition-smooth);
+  }
+  .facility-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--border-nexus);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(234, 179, 8, 0.15);
+  }
+
+  .facility-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #000000;
+  }
+  .facility-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .facility-card:hover .facility-img {
+    transform: scale(1.05);
+  }
+  .facility-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--bg-surface) 0%, transparent 50%);
+  }
+  .facility-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(7, 8, 11, 0.88);
+    border: 1px solid var(--border-nexus-subtle);
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(8px);
+  }
+
+  .facility-body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .facility-title {
+    font-size: 1.35rem;
+    color: #ffffff;
+    line-height: 1.25;
+  }
+  .facility-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Amenities Strip */
+  .amenities-strip {
+    background: #10121a;
+    border: 1px solid var(--border-nexus-subtle);
+    border-radius: var(--radius-xl);
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (min-width: 860px) {
+    .amenities-strip {
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+    }
+  }
+
+  .amenity-item {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+  }
+  .amenity-item h4 {
+    font-size: 1.05rem;
+    color: #ffffff;
+    margin-bottom: 0.2rem;
+  }
+  .amenity-item span {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+
+  .amenity-divider {
+    display: none;
+    width: 1px;
+    height: 44px;
+    background: var(--border-subtle);
+  }
+  @media (min-width: 860px) {
+    .amenity-divider {
+      display: block;
+    }
+  }
+</style>

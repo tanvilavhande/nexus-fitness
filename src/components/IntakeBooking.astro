@@ -1,0 +1,399 @@
+---
+// Interactive Intake Booking Component - Nexus Fitness Court
+---
+
+<section id="book-call" class="booking-section" aria-labelledby="booking-heading">
+  <div class="container booking-container">
+    <div class="booking-card glass-card glass-card-glow">
+      <div class="booking-header text-center">
+        <div class="badge-nexus">
+          BESA ROAD &bull; NAGPUR (NEAR BESA MASJID)
+        </div>
+        <h2 id="booking-heading" class="booking-title">
+          CLAIM YOUR FREE <span class="text-nexus">1-DAY TRIAL PASS</span>
+        </h2>
+        <p class="booking-subtitle">
+          Experience Nexus Fitness Court firsthand. Enjoy a complimentary 1-day workout pass, Gymquip machinery walkthrough, and physical fitness assessment with our certified coaching staff.
+        </p>
+      </div>
+
+      <!-- Booking Form -->
+      <form class="intake-form" id="intakeForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fullName" class="form-label">Full Name *</label>
+            <input 
+              type="text" 
+              id="fullName" 
+              name="fullName" 
+              required 
+              placeholder="e.g. Roshan Raut" 
+              class="form-input"
+            />
+          </div>
+          <div class="form-group">
+            <label for="emailAddress" class="form-label">Email or Area Location *</label>
+            <input 
+              type="text" 
+              id="emailAddress" 
+              name="emailAddress" 
+              required 
+              placeholder="e.g. Besa / Manish Nagar / Pipla" 
+              class="form-input"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phoneNumber" class="form-label">WhatsApp Number *</label>
+            <input 
+              type="tel" 
+              id="phoneNumber" 
+              name="phoneNumber" 
+              required 
+              placeholder="+91 81493 93881" 
+              class="form-input"
+            />
+          </div>
+          <div class="form-group">
+            <label for="trainingTime" class="form-label">Preferred Workout Batch</label>
+            <div class="select-wrapper">
+              <select id="trainingTime" name="trainingTime" class="form-input form-select">
+                <option value="morning">Morning Batch (06:00 AM - 10:00 AM)</option>
+                <option value="midday">Mid-Day (10:00 AM - 01:00 PM)</option>
+                <option value="evening" selected>Evening Batch (05:00 PM - 10:00 PM)</option>
+                <option value="sunday">Sunday Special Session (07:00 AM - 12:00 PM)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Goal Selection Radios -->
+        <div class="form-group">
+          <span class="form-label">Primary Fitness Goal</span>
+          <div class="goals-grid" role="radiogroup">
+            <label class="goal-radio-card">
+              <input type="radio" name="goal" value="recomp" checked />
+              <span class="goal-chip">
+                <span class="goal-indicator"></span>
+                <span>Fat Loss & Recomposition</span>
+              </span>
+            </label>
+            <label class="goal-radio-card">
+              <input type="radio" name="goal" value="hypertrophy" />
+              <span class="goal-chip">
+                <span class="goal-indicator"></span>
+                <span>Muscle Building & Hypertrophy</span>
+              </span>
+            </label>
+            <label class="goal-radio-card">
+              <input type="radio" name="goal" value="strength" />
+              <span class="goal-chip">
+                <span class="goal-indicator"></span>
+                <span>General Fitness & Stamina</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Current Struggles -->
+        <div class="form-group">
+          <label for="struggles" class="form-label">Fitness Goals or Inquiries for Nexus Trainers (Optional)</label>
+          <textarea 
+            id="struggles" 
+            name="struggles" 
+            rows="3" 
+            placeholder="Tell us about your fitness targets, past gym experience, or specific questions regarding Nexus Fitness Court memberships..."
+            class="form-input form-textarea"
+          ></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-primary form-submit-btn" id="submitBtn">
+          <span>Claim 1-Day Free Trial Pass</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <!-- Trust Badges -->
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>No Obligation Free Pass</span>
+          </div>
+          <div class="trust-badge-dot">&bull;</div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Om Enclave, Besa Road, Nagpur</span>
+          </div>
+          <div class="trust-badge-dot">&bull;</div>
+          <div class="trust-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#eab308" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Instant WhatsApp Confirmation</span>
+          </div>
+        </div>
+      </form>
+
+      <!-- Confirmation Feedback Screen -->
+      <div class="booking-success" id="bookingSuccess" style="display: none;">
+        <div class="success-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#0b0c10" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3 class="success-title">Free Pass Confirmed!</h3>
+        <p class="success-desc">
+          Your request has been sent to Nexus Fitness Court! You will receive an immediate confirmation on WhatsApp (+91 81493 93881) with gym timing and location directions for Om Enclave, Besa Road, Nagpur. We look forward to seeing you on the training floor!
+        </p>
+        <button class="btn-ghost" id="resetBookingBtn">Submit Another Request</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const intakeForm = document.getElementById('intakeForm') as HTMLFormElement;
+  const bookingSuccess = document.getElementById('bookingSuccess');
+  const resetBtn = document.getElementById('resetBookingBtn');
+
+  if (intakeForm && bookingSuccess) {
+    intakeForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const fullName = (document.getElementById('fullName') as HTMLInputElement).value;
+      const email = (document.getElementById('emailAddress') as HTMLInputElement).value;
+      const phone = (document.getElementById('phoneNumber') as HTMLInputElement).value;
+
+      if (!fullName || !email || !phone) {
+        alert('Please fill out all required fields marked with *');
+        return;
+      }
+
+      intakeForm.style.display = 'none';
+      bookingSuccess.style.display = 'flex';
+      bookingSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        intakeForm.reset();
+        intakeForm.style.display = 'block';
+        bookingSuccess.style.display = 'none';
+      });
+    }
+  }
+</script>
+
+<style>
+  .booking-section {
+    padding: 6.5rem 0;
+    position: relative;
+    background: #08090e;
+  }
+  .booking-container {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+  .booking-card {
+    background: #11131b;
+    border-radius: var(--radius-xl);
+    padding: 1.5rem 1rem;
+    border: 1px solid var(--border-nexus);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 50px rgba(234, 179, 8, 0.14);
+  }
+  @media (min-width: 480px) {
+    .booking-card {
+      padding: 2.5rem 2rem;
+    }
+  }
+  @media (min-width: 768px) {
+    .booking-card {
+      padding: 4rem 3.5rem;
+    }
+  }
+
+  .booking-header {
+    margin-bottom: 2.75rem;
+  }
+  .booking-title {
+    font-size: 2.25rem;
+    margin-top: 1rem;
+    margin-bottom: 0.85rem;
+  }
+  @media (min-width: 768px) {
+    .booking-title {
+      font-size: 3rem;
+    }
+  }
+  .booking-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .intake-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 680px) {
+    .form-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .form-label {
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.02em;
+  }
+
+  .form-input {
+    width: 100%;
+    background: #161822;
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    padding: 0.95rem 1.25rem;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+  }
+  .form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.25);
+    background: #1b1e2b;
+  }
+
+  .select-wrapper {
+    position: relative;
+  }
+  .form-select {
+    appearance: none;
+    cursor: pointer;
+  }
+
+  .goals-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  @media (min-width: 680px) {
+    .goals-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .goal-radio-card {
+    cursor: pointer;
+  }
+  .goal-radio-card input {
+    display: none;
+  }
+  .goal-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: #161822;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all var(--transition-fast);
+  }
+  .goal-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--text-dim);
+    transition: all var(--transition-fast);
+  }
+  .goal-radio-card input:checked + .goal-chip {
+    background: rgba(234, 179, 8, 0.12);
+    border-color: var(--primary);
+    color: #ffffff;
+  }
+  .goal-radio-card input:checked + .goal-chip .goal-indicator {
+    border-color: var(--primary);
+    background: var(--primary);
+    box-shadow: 0 0 8px var(--primary);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .form-submit-btn {
+    width: 100%;
+    padding: 1.15rem;
+    font-size: 1rem;
+    margin-top: 0.75rem;
+  }
+
+  .trust-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .trust-badge-dot {
+    color: var(--text-dim);
+  }
+
+  /* Success Screen */
+  .booking-success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 1rem;
+  }
+  .success-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 35px rgba(234, 179, 8, 0.5);
+  }
+  .success-title {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+  }
+  .success-desc {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+</style>
